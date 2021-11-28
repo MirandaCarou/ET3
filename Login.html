@@ -14,7 +14,7 @@
     <div >
         <form name="formularioRegistro" id="formularioRegistro">
             <label for="usuario">Nombre de Usuario: </label>
-            <input type="text" name="usuario" id="txtUsuario" placeholder="Nombre de Usuario" onblur="return checkUser();">
+            <input type="text" name="usuario" id="txtUsuario" placeholder="Nombre de Usuario" onblur="return checkUser()">
             <div id="errorFormatoUser" style="display: none;"><small style="color: red;">[ERROR]:solo letras (mayúsculas y minúsculas) y números max 45 mínimo 3</small></div>
             <br><br>
             <label for="contraseña">Contraseña: </label>
@@ -45,7 +45,7 @@
             <div id="errorFormatoPhone" style="display: none;"><small style="color: red;">[ERROR]:El formato debe ser solo numeros, max 9 min 9 y ser un telefono válido  en España</small></div>
             <br><br>
             <label for="email">Correo Electrónico: </label>
-            <input type="email" name="email" id="txtEmail" placeholder="nombre@correo.terminación" onblur="return checkEmail()">
+            <input type="text" name="email" id="txtEmail" placeholder="nombre@correo.terminación" onblur="return checkEmail()">
             <div id="errorFormatoEmail" style="display: none;"><small style="color: red;">[ERROR]:El formato debe ser el de un email </small></div>
             <br><br>
             <label for="es_Celiaco">¿Eres Celíaco?</label>

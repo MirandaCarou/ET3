@@ -3,8 +3,8 @@
 /*Función para comprobar lel nombre de usuario*/
 function checkUser() {
 
-    if(checkNotEmpty("txtUsuario")){
-        validacionOK("txtUsuario", "errorFormatoUser")
+    if(checkNotEmpty("txtUsuario") && checkSize("txtUsuario", 45, 3) && checkFormat("txtUsuario", "usuario")){
+        validacionOK("txtUsuario", "errorFormatoUser");
         return true;
     }else{
         validacionKO("txtUsuario", "errorFormatoUser");	
@@ -15,7 +15,7 @@ function checkUser() {
 /*FUnción para comprobar la contraseña*/
 function checkPass() {
 
-    if(checkNotEmpty("txtPassword")){
+    if(checkNotEmpty("txtPassword")&& checkSize("txtPassword", 45, 3) && checkFormat("txtPassword", "password")){
         validacionOK("txtPassword", "errorFormatoPass")
         return true;
     }else{
@@ -26,7 +26,7 @@ function checkPass() {
 /*Función para comprobar el nombre*/
 function checkName() {
 
-    if(checkNotEmpty("txtNombre")){
+    if(checkNotEmpty("txtNombre") && checkSize("txtNombre", 45, 3) && checkFormat("txtNombre", "name")){
         validacionOK("txtNombre", "errorFormatoName")
         return true;
     }else{
@@ -37,7 +37,7 @@ function checkName() {
 /*Función para comprobar el apellidos*/
 function checkSurname() {
 
-    if(checkNotEmpty("txtApellidos")){
+    if(checkNotEmpty("txtApellidos") && checkSize("txtApellidos", 100, 3) && checkFormat("txtApellidos", "surname")){
         validacionOK("txtApellidos", "errorFormatoApell")
         return true;
     }else{
@@ -48,7 +48,7 @@ function checkSurname() {
 /*Función para comprobar el dni*/
 function checkDni() {
 
-    if(checkNotEmpty("txtDni")){
+    if(checkNotEmpty("txtDni") && checkSize("txtDni", 9, 9) && checkFormat("txtDni", "dni")){
         validacionOK("txtDni", "errorFormatoDni")
         return true;
     }else{
@@ -59,7 +59,7 @@ function checkDni() {
 /*Función para comprobar la direccion*/
 function checkDirre() {
 
-    if(checkNotEmpty("txtDireccion")){
+    if(checkNotEmpty("txtDireccion") && checkSize("txtDireccion", 200, 3) && checkFormat("txtDireccion", "address")){
         validacionOK("txtDireccion", "errorFormatoDirr")
         return true;
     }else{
@@ -70,7 +70,7 @@ function checkDirre() {
 /*Función para comprobar el telefóno*/
 function checkPhone() {
 
-    if(checkNotEmpty("txtTelefono")){
+    if(checkNotEmpty("txtTelefono") && checkSize("txtTelefono", 9, 9) && checkFormat("txtTelefono", "phone")){
         validacionOK("txtTelefono", "errorFormatoPhone")
         return true;
     }else{
@@ -81,7 +81,7 @@ function checkPhone() {
 /*Función para comprobar el email*/
 function checkEmail() {
 
-    if(checkNotEmpty("txtEmail")){
+    if(checkNotEmpty("txtEmail") && checkSize("txtEmail", 45, 11) && checkFormat("txtEmail", "email")){
         validacionOK("txtEmail", "errorFormatoEmail")
         return true;
     }else{
@@ -102,16 +102,90 @@ function checkNotEmpty(idElement){
     }
 }
 /*FUnción para comprobar que el formato es correcto*/
-function checkFormat(idElement, sizeMax, sizeMin, idElementError,campo) {
+function checkSize(idElement, sizeMax, sizeMin) {
     
-    var valor = document.getElementById(idElement).value;
     var longitud = document.getElementById(idElement).value.length;
+
     if((longitud > sizeMax) || (longitud < sizeMin)){
         return false;
     }else{
-        return true
+        return true;
     }
-} 
+}
+function checkFormat(idElement, campo) {
+    var exprUserPass = /^[a-zA-Z0-9\u00f1\u00d1]+$/;
+    var exprTelf =  /^[0-9]+$/; 
+    var exprNameSurname = /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/;
+    var exprAddress = /^[0-9a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñÑ\s]+$/;
+    var exprEmail = /\w+@\w+\.+[a-z]+$/;
+    var exprDni =  /^[0-9]{8}[a-zA-Z]{1}/;
+    var valor = document.getElementById(idElement).value;
+
+    if(campo == "usuario"){
+        
+        if(exprUserPass.test(valor)){
+            return true;
+        }else{
+            return false;
+        }
+    }else if(campo == "password"){
+        
+        if(exprUserPass.test(valor)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }else if(campo == "phone"){
+       
+        if(exprTelf.test(valor)){
+            return true;
+        }else{
+            return false;
+        }
+    }else if(campo == "name"){
+       
+        if(exprNameSurname.test(valor)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }else if(campo == "surname"){
+       
+        if(exprNameSurname.test(valor)){
+            return true;
+        }else{
+            return false;
+        }
+    }else if(campo == "email"){
+       
+        if(exprEmail.test(valor)){
+            return true;
+        }else{
+            return false;
+        }
+    }else if(campo == "dni"){
+       
+        if(exprDni.test(valor)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    else if(campo == "address"){
+       
+        if(exprAddress.test(valor)){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
+
+
  /**Función que no muestra mensaje de error y colorea el borde del input del formulario de verde*/
 function validacionOK(idElement, idElementError) {
 
