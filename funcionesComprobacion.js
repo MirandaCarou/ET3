@@ -1,5 +1,6 @@
 /*Funcionoes Básicas de comprobación de inputs*/
 
+
 /*Función para comprobar lel nombre de usuario*/
 function checkUser() {
 
@@ -15,7 +16,7 @@ function checkUser() {
 /*FUnción para comprobar la contraseña*/
 function checkPass() {
 
-    if(checkNotEmpty("txtPassword")&& checkSize("txtPassword", 45, 3) && checkFormat("txtPassword", "password")){
+    if(checkNotEmpty("txtPassword") && checkSize("txtPassword", 45, 3) && checkFormat("txtPassword", "password")){
         validacionOK("txtPassword", "errorFormatoPass")
         return true;
     }else{
@@ -89,6 +90,19 @@ function checkEmail() {
         return false;
     }
 }
+/*FUnción para comprobar el campo de la foto de perfil*/
+function checkPhoto() {
+
+    if(checkFileExtension("fotoPersona")){
+        validacionOK("fotoPersona", "errorFormatoPhoto")
+        return true;
+    }else{
+        validacionKO("fotoPersona", "errorFormatoPhoto");	
+        return false;
+    }
+    
+}
+
 /*FUncion que mira si el campo es vacío*/
 function checkNotEmpty(idElement){
     
@@ -119,6 +133,7 @@ function checkFormat(idElement, campo) {
     var exprAddress = /^[0-9a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñÑ\s]+$/;
     var exprEmail = /\w+@\w+\.+[a-z]+$/;
     var exprDni =  /^[0-9]{8}[a-zA-Z]{1}/;
+
     var valor = document.getElementById(idElement).value;
 
     if(campo == "usuario"){
@@ -184,8 +199,21 @@ function checkFormat(idElement, campo) {
         return false;
     }
 }
+function checkFileExtension(idElement){
 
+    var name = document.getElementById(idElement).value;
+    extensionOK = new Array(".jpg",".png");
+    var extension = (name.substring(name.lastIndexOf("."))).toLowerCase(); 
 
+    for (var i=0; i< extensionOK.length; i++){
+        if(extensionOK[i] == extension){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+}
  /**Función que no muestra mensaje de error y colorea el borde del input del formulario de verde*/
 function validacionOK(idElement, idElementError) {
 
