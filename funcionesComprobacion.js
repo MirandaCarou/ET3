@@ -93,7 +93,7 @@ function checkEmail() {
 /*FUnción para comprobar el campo de la foto de perfil*/
 function checkPhoto() {
 
-    if(checkFileExtension("fotoPersona")){
+    if(checkFileExtension("fotoPersona") && checkFileSize("fotoPersona")){
         validacionOK("fotoPersona", "errorFormatoPhoto")
         return true;
     }else{
@@ -213,6 +213,27 @@ function checkFileExtension(idElement){
         }
     }
     
+}
+function checkFileSize(idElement) {
+    
+    var input = document.getElementById(idElement)
+    var file = input.files[0];
+    var size = file.size;
+
+    if(!input){
+        return false;
+    }else if(!input.files){
+        return false;
+    }else if(!input.files[0]){
+        return false;
+        /*size: 2097152*/
+    }else if(size > 2097152){
+        return false;
+    }else{
+        return true;
+    }
+
+
 }
  /**Función que no muestra mensaje de error y colorea el borde del input del formulario de verde*/
 function validacionOK(idElement, idElementError) {
