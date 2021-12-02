@@ -24,6 +24,19 @@ function checkPass() {
         return false;
     }
 }
+function checkPass2(idElement1, idElement2){
+    var valorPass = document.getElementById(idElement1).value;
+    var valorPass2 = document.getElementById(idElement2).value;
+    if(valorPass == valorPass2){
+        validacionOK("txtPassword2", "errorFormatoPass2");
+        return true;
+    }else{
+        validacionKO("txtPassword2", "errorFormatoPass2");	
+        return false;
+    }
+
+    
+}
 /*Función para comprobar el nombre*/
 function checkName() {
 

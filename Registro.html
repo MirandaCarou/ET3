@@ -1,4 +1,3 @@
-/*ET1 Miranda y Saúl*/
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,56 +8,84 @@
     <script type="text/javascript" src="funcionesComprobacion.js"></script>
     <script type="text/javascript" src="tigra_calendar/1-simple-calendar/tcal.js"></script>
     <link rel="stylesheet" type="text/css" href="tigra_calendar/1-simple-calendar/tcal.css">
+    <link rel="stylesheet" type="text/css" href="Registro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,600;0,700;0,900;1,200;1,300;1,600;1,700;1,900&display=swap" rel="stylesheet"> 
     <title>Document</title>
 </head>
 <body>
-    <h1>Registro de Usuario</h1>
-    <div >
+    <nav id="menu">
+        <ul>
+            <li><a id="logo" href="Registro.html">NetActivities</a></li>
+            <li><a id="menuline">|</a></li>
+            <li><a id="textoMenu" href="Registro.html">Aplicación de gestión de inscripciones en actividades</a> </li>
+        </ul>
+    </nav>
+    <div id="textTitulo">
+        <h1 id="tituloRegistro">¡Regístrate en la aplicación ahora!</h1>
+         <h5>Una vez que te has registrado podrás consultar las actividades disponibles e inscribirte en ellas</h5>
+    </div>
+        <div >
         <form name="formularioRegistro" id="formularioRegistro">
-            <label for="usuario">Nombre de Usuario: </label>
-            <input type="text" name="usuario" id="txtUsuario" placeholder="Nombre de Usuario" onblur="return checkUser()">
-            <div id="errorFormatoUser" style="display: none;"><small style="color: red;">[ERROR]:solo letras (mayúsculas y minúsculas) y números max 45 mínimo 3</small></div>
-            <br><br>
-            <label for="contraseña">Contraseña: </label>
-            <input type="password" name="contraseña" id="txtPassword" placeholder="Contraseña" onblur="return checkPass()">
-            <div id="errorFormatoPass" style="display: none;"><small style="color: red;">[ERROR]:solo letras (mayúsculas y minúsculas) y números max 45 mínimo 3 </small></div>
-            <br> <br>
-            <label for="nombre">Nombre: </label>
+            <h1>Datos Personales</h1>
+            <h5>Necesitamos una serie de datos básicos para crear tu cuenta</h5>
+            <label for="nombre">Nombre  <span>*</span></label>
             <input type="text" name="nombre" id="txtNombre" placeholder="Nombre" onblur="return checkName()"> 
             <div id="errorFormatoName" style="display: none;"><small style="color: red;">[ERROR]:solo letras (acentuada y mayúsculas incluidas) y espacios max 45 minimo 3</small></div>
             <br> <br>       
-            <label for="apellidos">Primer y Segundo Apellido:  </label>
+            <label for="apellidos">Primer y Segundo Apellido  <span>*</span></label>
             <input type="text" name="apellidos" id="txtApellidos" placeholder="Apellidos" onblur="return checkSurname()">
             <div id="errorFormatoApell" style="display: none;"><small style="color: red;">[ERROR]:solo letras (acentuada y mayúsculas incluidas) y espacios max 100 minimo 3</small></div>
             <br><br>
-            <label for="dni_usuario">Número de DNI: </label>
+            <label for="dni_usuario">Número de DNI  <span>*</span></label>
             <input type="text" name="dni_usuario" id="txtDni" placeholder="DNI" onblur="return checkDni()">
             <div id="errorFormatoDni" style="display: none;"><small style="color: red;">[ERROR]:El formato debe ser 8 numeros y una letra correcta con respecto al número</small></div>
             <br><br>
-            <label for="fechaNacimiento"> Fecha de nacimiento: </label>
+            <label for="fechaNacimiento"> Fecha de nacimiento <span>*</span></label>
             <input type="input" name="fechaNacimiento" id="txtFechaNac" class="tcal" readonly="true">
             <br><br>
-            <label for="direccion"> Dirección actual: </label>
+            <label for="direccion"> Dirección actual  <span>*</span></label>
             <input type="text" name="direccion" id="txtDireccion"  placeholder="Dirección" onblur="return checkDirre()">
             <div id="errorFormatoDirr" style="display: none;"><small style="color: red;">[ERROR]:El formato debe ser solo letras (acentuada y mayúsculas incluidas) numeros y espacios max 200 minimo 3</small></div>
             <br><br>
-            <label for="telefono"> Número de Teléfono:</label>
+            <label for="telefono"> Número de Teléfono  <span>*</span></label>
             <input type="tel" name="telefono" id="txtTelefono" placeholder="(+34)111222333" onblur="return checkPhone()">
             <div id="errorFormatoPhone" style="display: none;"><small style="color: red;">[ERROR]:El formato debe ser solo numeros, max 9 min 9 y ser un telefono válido  en España</small></div>
             <br><br>
-            <label for="email">Correo Electrónico: </label>
+            <label for="email">Correo Electrónico  <span>*</span></label>
             <input type="text" name="email" id="txtEmail" placeholder="nombre@correo.terminación" onblur="return checkEmail()">
             <div id="errorFormatoEmail" style="display: none;"><small style="color: red;">[ERROR]:El formato debe ser el de un email </small></div>
             <br><br>
             <label for="es_Celiaco">¿Eres Celíaco?</label>
             <input type="checkbox" name="es_Celiaco" id="txtCelicaco">
             <br><br>
-            <label for="foto_Persona">Foto de Perfil: </label>
-            <input type="file" name="foto_Persona" id="fotoPersona" onblur="return checkPhoto()">
+            <label for="foto_Persona">Foto (Opcional)</label>
+            <input type="file" name="foto_Persona" id="fotoPersona" value="Adjuntar foto" onblur="return checkPhoto()">
             <div id="errorFormatoPhoto" style="display: none;"><small style="color: red;">[ERROR]:El formato debe ser solo letras, números y punto separando extensión, max 100 mínimo 5, solo jpg y png.(con upload  maximo 2 MB) </small></div>
             <br><br>
-            <input type = "submit" value = "Resgistrarse">
         </form>
+    </div>
+    <div>
+        <form name="formularioAcceso" id="formularioAcesso">
+            <h1>Datos de Accesso</h1>
+            <h5>Estos son los datos que se usaran como credenciales de accesso a la aplicación</h5>
+            <label for="usuario">Nombre de Usuario  <span>*</span></label>
+            <input type="text" name="usuario" id="txtUsuario" placeholder="Nombre de Usuario" onblur="return checkUser()">
+            <div id="errorFormatoUser" style="display: none;"><small style="color: red;">[ERROR]:solo letras (mayúsculas y minúsculas) y números max 45 mínimo 3</small></div>
+            <br><br>
+            <label for="contraseña">Contraseña  <span>*</span></label>
+            <input type="password" name="contraseña" id="txtPassword" placeholder="Contraseña" onblur="return checkPass()">
+            <div id="errorFormatoPass" style="display: none;"><small style="color: red;">[ERROR]:solo letras (mayúsculas y minúsculas) y números max 45 mínimo 3 </small></div>
+            <br> <br>
+            <label for="contraseña2">Repite la constraseña  <span>*</span></label>
+            <input type="password" name="contraseña2" id="txtPassword2" placeholder="Contraseña" onblur="return checkPass2('txtPassword','txtPassword2')">
+            <div id="errorFormatoPass2" style="display: none;"><small style="color: red;">[ERROR]:Las contraseñas no coinciden</small></div>
+            <br> <br>
+        </form>
+    </div>
+    <div id="divButtom">
+        <input id="buttomRegistro" type = "submit" value = "REGÍSTRATE EN LA APLICACIÓN">
     </div>
 </body>
 </html>
