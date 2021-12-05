@@ -27,6 +27,7 @@ function checkPass() {
 function checkPass2(idElement1, idElement2){
     var valorPass = document.getElementById(idElement1).value;
     var valorPass2 = document.getElementById(idElement2).value;
+
     if(valorPass == valorPass2){
         validacionOK("txtPassword2", "errorFormatoPass2");
         return true;
@@ -34,7 +35,6 @@ function checkPass2(idElement1, idElement2){
         validacionKO("txtPassword2", "errorFormatoPass2");	
         return false;
     }
-
     
 }
 /*Función para comprobar el nombre*/
@@ -62,7 +62,7 @@ function checkSurname() {
 /*Función para comprobar el dni*/
 function checkDni() {
 
-    if(checkNotEmpty("txtDni") && checkSize("txtDni", 9, 9) && checkFormat("txtDni", "dni")){
+    if(checkNotEmpty("txtDni") && checkSize("txtDni", 9, 9) && checkFormat("txtDni", "dni") && checkLetraDni("txtDni") ){
         validacionOK("txtDni", "errorFormatoDni")
         return true;
     }else{
@@ -229,7 +229,7 @@ function checkFileExtension(idElement){
 }
 function checkFileSize(idElement) {
     
-    var input = document.getElementById(idElement)
+    var input = document.getElementById(idElement);
     var file = input.files[0];
     var size = file.size;
 
@@ -246,6 +246,22 @@ function checkFileSize(idElement) {
         return true;
     }
 
+
+}
+function checkLetraDni(idElement){
+    
+    var valor = document.getElementById(idElement).value;
+    var numero = valor.substr(0,valor.length-1);
+    var letra = valor.substr(valor.length-1,1);
+    var letrasArray = 'TRWAGMYFPDXBNJZSQVHLCKET';
+    var modulo = numero % 23;
+    var letraCorrecta = letrasArray.substring(modulo,modulo+1);
+
+      if( letraCorrecta == letra.toUpperCase() ) {
+         return true;
+       }else{
+         return false;
+       }
 
 }
  /**Función que no muestra mensaje de error y colorea el borde del input del formulario de verde*/
